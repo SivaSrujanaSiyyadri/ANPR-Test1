@@ -36,7 +36,7 @@ st.caption('Then click the :blue[Detect License Plate] button and check the resu
 col1, col2 = st.columns(2)
 
 # Load Pre-trained ML Model
-model_path = "./weights/best_license_plate_model.pt" # Path(settings.DETECTION_MODEL)
+model_path = Path(settings.DETECTION_MODEL)
 try:
     model = helper.load_model()
 except Exception as ex:
