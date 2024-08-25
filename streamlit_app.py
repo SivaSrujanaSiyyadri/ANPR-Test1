@@ -38,7 +38,7 @@ col1, col2 = st.columns(2)
 # Load Pre-trained ML Model
 model_path = Path(settings.DETECTION_MODEL)
 try:
-    model = helper.load_model()
+    model = helper.load_model(model_path)
 except Exception as ex:
     st.error(f"Unable to load model. Check the specified path: {model_path}")
     st.error(ex)
