@@ -40,9 +40,9 @@ MODEL_DIR = ROOT / 'weights'
 # DETECTION_MODEL = MODEL_DIR / 'yolov8n.pt'
 # In case of your custome model comment out the line above and
 # Place your custom model pt file name at the line below 
-DETECTION_MODEL = MODEL_DIR / 'yolov8l_bdd.pt'
+#DETECTION_MODEL = MODEL_DIR / 'yolov8l_bdd.pt'
 
-SEGMENTATION_MODEL = MODEL_DIR / 'yolov8n-seg.pt'
+SEGMENTATION_MODEL = MODEL_DIR / 'yolov5n-seg.pt'
 
 # Webcam
 WEBCAM_PATH = 0
