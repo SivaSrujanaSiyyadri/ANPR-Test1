@@ -66,6 +66,7 @@ if st.sidebar.button('Detect License Plate'):
     uploaded_image = PIL.Image.open(source_img)
 
     res = model.predict(uploaded_image)
+    st.text(res)
     boxes = res[0].boxes
     res_plotted = res[0].plot()[:, :, ::-1]
     st.image(res_plotted, caption='Detected Image',
