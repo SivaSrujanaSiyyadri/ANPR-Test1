@@ -72,10 +72,10 @@ if st.sidebar.button('Detect License Plate'):
     st.image(res_plotted, caption='Detected Image',
                 use_column_width=True)
     # render yolo image as well
-    r_img = res.render() # returns a list with the images as np.array
-    img_with_boxes = r_img[0] # image with boxes as np.array
-    st.image(img_with_boxes, caption='Yolo Image',
-                use_column_width=True)
+    # r_img = res.render() # returns a list with the images as np.array
+    # img_with_boxes = r_img[0] # image with boxes as np.array
+    # st.image(img_with_boxes, caption='Yolo Image',
+    #             use_column_width=True)
     # # Save the uploaded image to a temporary file and read it
     # tfile = tempfile.NamedTemporaryFile(delete=True)
     # tfile.write(source_img.read())
