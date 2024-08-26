@@ -71,6 +71,10 @@ if st.sidebar.button('Detect License Plate'):
     res_plotted = res[0].plot()[:, :, ::-1]
     st.image(res_plotted, caption='Detected Image',
                 use_column_width=True)
+        # # Read image
+    # img = cv2.imread(tfile.name)
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
     cropped_image = gray[topx:bottomx+1, topy:bottomy+1]
 
 
