@@ -66,11 +66,36 @@ if st.sidebar.button('Detect License Plate'):
     uploaded_image = PIL.Image.open(source_img)
 
     res = model.predict(uploaded_image)
-    st.text(res)
+    #st.text(res)
     boxes = res[0].boxes
     res_plotted = res[0].plot()[:, :, ::-1]
     st.image(res_plotted, caption='Detected Image',
                 use_column_width=True)
+    cropped_image = gray[topx:bottomx+1, topy:bottomy+1]
+
+
+    # # Use Easy OCR to read text
+    reader = easyocr.Reader(['en'])
+    result = reader.readtext(cropped_image)
+    tfile = tempfile.NamedTemporaryFile(delete=True)
+    tfile.write(source_img.read())
+    img = cv2.imread(tfile.name)
+    with col2:
+        try:
+            text = result[0][-2]
+        except Exception as e:
+            text = "No Text Detected"
+        font = cv2.FONT_HERSHEY_SIMPLEX
+        res = cv2.putText(img, text=text, org=(approx[0][0][0], approx[1][0][1]+60), fontFace=font, fontScale=1, color=(0,255,0), thickness=2, lineType=cv2.LINE_AA)
+        res = cv2.rectangle(img, tuple(approx[0][0]), tuple(approx[2][0]), (0,255,0),3)
+        st.image(cv2.cvtColor(res, cv2.COLOR_BGR2RGB), caption="Detected License Plate", use_column_width=True)
+
+        try:
+            st.write("Detected License Plate:", text)
+        except Exception as e:
+            st.write("No License Plate Detected")
+
+
     # render yolo image as well
     # r_img = res.render() # returns a list with the images as np.array
     # img_with_boxes = r_img[0] # image with boxes as np.array
