@@ -72,6 +72,9 @@ if st.sidebar.button('Detect License Plate'):
     st.image(res_plotted, caption='Detected Image',
                 use_column_width=True)
         # # Read image
+    # Save the uploaded image to a temporary file and read it
+    tfile = tempfile.NamedTemporaryFile(delete=True)
+    tfile.write(source_img.read())
     img = cv2.imread(tfile.name)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
