@@ -1,6 +1,7 @@
 # Python In-built packages
 from pathlib import Path
 import PIL
+import tempfile
 
 # External packages
 import streamlit as st
