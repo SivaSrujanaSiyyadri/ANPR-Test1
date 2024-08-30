@@ -110,9 +110,9 @@ if st.sidebar.button('Detect License Plate'):
     # # Use Easy OCR to read text
     reader = easyocr.Reader(['en'])
     result = reader.readtext(cropped_image)
-    tfile = tempfile.NamedTemporaryFile(delete=True)
-    tfile.write(source_img.read())
-    img = cv2.imread(tfile.name)
+    # tfile = tempfile.NamedTemporaryFile(delete=True)
+    # tfile.write(source_img.read())
+    # img = cv2.imread(tfile.name)
     with col2:
         try:
             text = result[0][-2]
