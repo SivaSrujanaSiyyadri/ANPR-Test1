@@ -75,7 +75,7 @@ if st.sidebar.button('Detect License Plate'):
                 use_column_width=True)
         # # Read image
     img_array = np.array(uploaded_image)
-    gray = cv2.cvtColor(img_array, cv2.COLOR_RGB2BGR)
+    #gray = cv2.cvtColor(img_array, cv2.COLOR_RGB2BGR)
     # # Save the uploaded image to a temporary file and read it
     #tfile = tempfile.NamedTemporaryFile(delete=True)
     # print('uploaded_image :',uploaded_image)
@@ -85,13 +85,22 @@ if st.sidebar.button('Detect License Plate'):
     # img = np.array(uploaded_image)
 
     # print('img' , img)
-    # gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    mask = np.zeros(gray.shape, np.uint8)
-    (x,y) = np.where(mask==255)
-    (topx, topy) = (np.min(x), np.min(y))
-    (bottomx, bottomy) = (np.max(x), np.max(y))
+    #gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    gray = cv2.imread(uploaded_image)
+    x1, y1, x2, y2 = boxes
+    # Crop the object using the bounding box coordinates
+    cropped_image = gray[int(y1):int(y2), int(x1):int(x2)]
+    st.image(cropped_image, caption='Croped Image',
+                use_column_width=True)
+    
 
-    cropped_image = gray[topx:bottomx+1, topy:bottomy+1]
+    # mask = np.zeros(gray.shape, np.uint8)
+
+    # (x,y) = np.where(mask==255)
+    # (topx, topy) = (np.min(x), np.min(y))
+    # (bottomx, bottomy) = (np.max(x), np.max(y))
+
+    # cropped_image = gray[topx:bottomx+1, topy:bottomy+1]
 
 
     # # Use Easy OCR to read text
