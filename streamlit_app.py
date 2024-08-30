@@ -36,7 +36,7 @@ st.title("Automatic Number Plate License Detection")
 st.caption('Upload an image of a vehicle with a number plate.')
 st.caption('Then click the :blue[Detect License Plate] button and check the result.')
 # Creating two columns on the main page
-col1, col2 = st.columns(2)
+col1, col2 , col3= st.columns(3)
 
 # Load Pre-trained ML Model
 model_path = Path(settings.DETECTION_MODEL)
@@ -91,7 +91,7 @@ if st.sidebar.button('Detect License Plate'):
     result = reader.readtext(cropped_image)
     print('Result :',result)
    
-    with col2:
+    with col3:
         try:
             text = result[0][-2]
         except Exception as e:
