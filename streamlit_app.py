@@ -41,7 +41,7 @@ st.title("Automatic Number Plate License Detection")
 st.caption('Upload an image of a vehicle with a number plate.')
 st.caption('Then click the :blue[Detect License Plate] button and check the result.')
 # Creating two columns on the main page
-col1= st.columns(1)
+col1,col2= st.columns(2)
 
 # Load Pre-trained ML Model
 model_path = Path(settings.DETECTION_MODEL)
