@@ -75,6 +75,7 @@ if st.sidebar.button('Detect License Plate'):
         # # Read image
     # Save the uploaded image to a temporary file and read it
     tfile = tempfile.NamedTemporaryFile(delete=True)
+    print('uploaded_image :'uploaded_image)
     print('tfile ',tfile.name)
     print(source_img.read())
     tfile.write(uploaded_image)
