@@ -79,51 +79,24 @@ if st.sidebar.button('Detect License Plate'):
     img_array = np.array(uploaded_image)
     gray = cv2.cvtColor(img_array, cv2.COLOR_RGB2BGR)
 
-    # # Save the uploaded image to a temporary file and read it
-    #tfile = tempfile.NamedTemporaryFile(delete=True)
-    # print('uploaded_image :',uploaded_image)
-    # print('tfile ',tfile.name)
-    # print(source_img.read())
-    # tfile.write(uploaded_image)
-    # img = np.array(uploaded_image)
-
-    # print('img' , img)
-    #gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    #gray = cv2.imread(source_img)
     print('Boxes xyxy:   ',boxes.xyxy.tolist()[0])
     x1, y1, x2, y2 = boxes.xyxy.tolist()[0]
     # Crop the object using the bounding box coordinates
     cropped_image = gray[int(y1):int(y2), int(x1):int(x2)]
     st.image(cropped_image, caption='Croped Image',
                 use_column_width=True)
+    print('---------------------------------------------')
     
-
-    # mask = np.zeros(gray.shape, np.uint8)
-
-    # (x,y) = np.where(mask==255)
-    # (topx, topy) = (np.min(x), np.min(y))
-    # (bottomx, bottomy) = (np.max(x), np.max(y))
-
-    # cropped_image = gray[topx:bottomx+1, topy:bottomy+1]
-
-
-    # # Use Easy OCR to read text
     reader = easyocr.Reader(['en'])
     result = reader.readtext(cropped_image)
     print('Result :',result)
-    # tfile = tempfile.NamedTemporaryFile(delete=True)
-    # tfile.write(source_img.read())
-    # img = cv2.imread(tfile.name)
+   
     with col2:
         try:
             text = result[0][-2]
         except Exception as e:
             text = "No Text Detected"
-        # font = cv2.FONT_HERSHEY_SIMPLEX
-        # res = cv2.putText(img, text=text, org=(approx[0][0][0], approx[1][0][1]+60), fontFace=font, fontScale=1, color=(0,255,0), thickness=2, lineType=cv2.LINE_AA)
-        # res = cv2.rectangle(img, tuple(approx[0][0]), tuple(approx[2][0]), (0,255,0),3)
-        # st.image(cv2.cvtColor(res, cv2.COLOR_BGR2RGB), caption="Detected License Plate", use_column_width=True)
-
+      
         try:
             st.write("Detected License Plate:", text)
         except Exception as e:
