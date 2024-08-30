@@ -128,7 +128,6 @@ def main():
     "What do you want to upload?",
     ("Image", "Video"))
     if add_selectbox=='Image':
-        sidebar()
         yolomodel()
         image()
     if add_selectbox=='Video':
