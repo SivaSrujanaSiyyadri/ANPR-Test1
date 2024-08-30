@@ -23,11 +23,6 @@ st.set_page_config(
     initial_sidebar_state="expanded",    # Expanding sidebar by default   
 )
 
-st.markdown("<h3 style='text-align: center; color: white;'>Capstone Stone</h1>", unsafe_allow_html=True)
-st.markdown("<h1 style='text-align: center; color: white;'>Automatic Number Plate Detection</h1>", unsafe_allow_html=True)
-st.markdown("![gif](https://cdn.discordapp.com/attachments/945603582462398464/948294399689912330/car-on-the-road-4851957-404227-unscreen.gif)")
-
-
 # Creating sidebar
 with st.sidebar:
     st.header("Image Config")     # Adding header to sidebar
@@ -41,7 +36,7 @@ st.title("Automatic Number Plate License Detection")
 st.caption('Upload an image of a vehicle with a number plate.')
 st.caption('Then click the :blue[Detect License Plate] button and check the result.')
 # Creating two columns on the main page
-col1,col2= st.columns(2)
+col1, col2 , col3= st.columns(3)
 
 # Load Pre-trained ML Model
 model_path = Path(settings.DETECTION_MODEL)
@@ -96,7 +91,7 @@ if st.sidebar.button('Detect License Plate'):
     result = reader.readtext(cropped_image)
     print('Result :',result)
    
-    with col1:
+    with col3:
         try:
             text = result[0][-2]
         except Exception as e:
@@ -107,13 +102,3 @@ if st.sidebar.button('Detect License Plate'):
         except Exception as e:
             st.write("No License Plate Detected")
 
-
-
-st.subheader('About:')
-st.markdown('In this capstone project -ANPR , we have used OpenCv to detect the Licence plate in an image and give the converted string.\
-    The pre processing of each frame or image is done using grayscale,canny-edge,invert and histogram equalization.\
-    We have used the Pytesseract Library to perform OCR on the detected frame of licence plate.This then gives us the Licence Number Plate.')
-st.subheader('Techstack:')
-st.markdown('1)OpenCV: Helps with basic image processing not 100% accurate')
-st.markdown('2)PyTesseract: It is an Optical Character Recognising Problem (OCR). Therefore ,the Tesseract-OCR engine(pytesseract is the python implementation) helps in converting image to text.')
-st.markdown('3)Streamlit: Used to create web application for deployment and front end.')
