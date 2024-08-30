@@ -118,10 +118,10 @@ if st.sidebar.button('Detect License Plate'):
             text = result[0][-2]
         except Exception as e:
             text = "No Text Detected"
-        font = cv2.FONT_HERSHEY_SIMPLEX
-        res = cv2.putText(img, text=text, org=(approx[0][0][0], approx[1][0][1]+60), fontFace=font, fontScale=1, color=(0,255,0), thickness=2, lineType=cv2.LINE_AA)
-        res = cv2.rectangle(img, tuple(approx[0][0]), tuple(approx[2][0]), (0,255,0),3)
-        st.image(cv2.cvtColor(res, cv2.COLOR_BGR2RGB), caption="Detected License Plate", use_column_width=True)
+        # font = cv2.FONT_HERSHEY_SIMPLEX
+        # res = cv2.putText(img, text=text, org=(approx[0][0][0], approx[1][0][1]+60), fontFace=font, fontScale=1, color=(0,255,0), thickness=2, lineType=cv2.LINE_AA)
+        # res = cv2.rectangle(img, tuple(approx[0][0]), tuple(approx[2][0]), (0,255,0),3)
+        # st.image(cv2.cvtColor(res, cv2.COLOR_BGR2RGB), caption="Detected License Plate", use_column_width=True)
 
         try:
             st.write("Detected License Plate:", text)
