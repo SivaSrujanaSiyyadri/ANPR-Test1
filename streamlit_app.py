@@ -3,6 +3,7 @@ from pathlib import Path
 import PIL
 import tempfile
 import numpy as np
+import easyocr
 
 # External packages
 import streamlit as st
