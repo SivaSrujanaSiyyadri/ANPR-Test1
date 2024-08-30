@@ -46,10 +46,9 @@ def config():
 # Creating sidebar
 def sidebar():
     with st.sidebar:
-         st.header("Image Config")     # Adding header to sidebar
+        st.header("Image Config")     # Adding header to sidebar
         # Adding file uploader to sidebar for selecting images
-        source_img = st.file_uploader(
-          "Upload an image...", type=("jpg", "jpeg", "png", 'bmp', 'webp'))
+        source_img = st.file_uploader("Upload an image...", type=("jpg", "jpeg", "png", 'bmp', 'webp'))
     
 
 # # Creating main page heading
