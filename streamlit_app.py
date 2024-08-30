@@ -2,6 +2,7 @@
 from pathlib import Path
 import PIL
 import tempfile
+import numpy as np
 
 # External packages
 import streamlit as st
