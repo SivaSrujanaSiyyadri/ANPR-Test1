@@ -44,7 +44,7 @@ def config():
     )
 
 # Creating sidebar
-def sidebar(source_img):
+def sidebar():
     with st.sidebar:
         st.header("Image Config")     # Adding header to sidebar
         # Adding file uploader to sidebar for selecting images
