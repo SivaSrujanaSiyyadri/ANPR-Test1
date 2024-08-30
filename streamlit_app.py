@@ -77,7 +77,7 @@ if st.sidebar.button('Detect License Plate'):
     img_array = np.array(uploaded_image)
     gray = cv2.cvtColor(img_array, cv2.COLOR_RGB2BGR)
     # # Save the uploaded image to a temporary file and read it
-    # tfile = tempfile.NamedTemporaryFile(delete=True)
+    #tfile = tempfile.NamedTemporaryFile(delete=True)
     # print('uploaded_image :',uploaded_image)
     # print('tfile ',tfile.name)
     # print(source_img.read())
@@ -86,6 +86,10 @@ if st.sidebar.button('Detect License Plate'):
 
     # print('img' , img)
     # gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    mask = np.zeros(gray.shape, np.uint8)
+    (x,y) = np.where(mask==255)
+    (topx, topy) = (np.min(x), np.min(y))
+    (bottomx, bottomy) = (np.max(x), np.max(y))
 
     cropped_image = gray[topx:bottomx+1, topy:bottomy+1]
 
