@@ -86,7 +86,7 @@ if st.sidebar.button('Detect License Plate'):
 
     # print('img' , img)
     #gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    gray = cv2.imread(uploaded_image)
+    gray = cv2.imread(source_img)
     x1, y1, x2, y2 = boxes
     # Crop the object using the bounding box coordinates
     cropped_image = gray[int(y1):int(y2), int(x1):int(x2)]
