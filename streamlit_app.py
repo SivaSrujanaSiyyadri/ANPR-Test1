@@ -75,7 +75,8 @@ if st.sidebar.button('Detect License Plate'):
                 use_column_width=True)
         # # Read image
     img_array = np.array(uploaded_image)
-    #gray = cv2.cvtColor(img_array, cv2.COLOR_RGB2BGR)
+    gray = cv2.cvtColor(img_array, cv2.COLOR_RGB2BGR)
+
     # # Save the uploaded image to a temporary file and read it
     #tfile = tempfile.NamedTemporaryFile(delete=True)
     # print('uploaded_image :',uploaded_image)
@@ -86,7 +87,7 @@ if st.sidebar.button('Detect License Plate'):
 
     # print('img' , img)
     #gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    gray = cv2.imread(source_img)
+    #gray = cv2.imread(source_img)
     x1, y1, x2, y2 = boxes
     # Crop the object using the bounding box coordinates
     cropped_image = gray[int(y1):int(y2), int(x1):int(x2)]
@@ -135,7 +136,7 @@ if st.sidebar.button('Detect License Plate'):
     # tfile.write(source_img.read())
 
     # # Read image
-    # img = cv2.imread(tfile.name)
+    # img = cv2.imread(tfile.name) 
     # gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
     # # Apply filter and find edges for localization
