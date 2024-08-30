@@ -70,6 +70,7 @@ if st.sidebar.button('Detect License Plate'):
     res = model.predict(uploaded_image)
     #st.text(res)
     boxes = res[0].boxes
+    print('boxes', boxes)
     res_plotted = res[0].plot()[:, :, ::-1]
     st.image(res_plotted, caption='Detected Image',
                 use_column_width=True)
