@@ -68,7 +68,7 @@ def yolomodel():
 
 
 # Adding image to the first column if image is uploaded
-def image():
+def image(source_img):
     # Creating two columns on the main page
     col1, col2  = st.columns(2)
     with col1:
@@ -134,7 +134,7 @@ def main():
     if add_selectbox=='Image':
         source_img=sidebar()
         yolomodel()
-        image()
+        image(source_img)
     if add_selectbox=='Video':
         yolomodel()
         video()
