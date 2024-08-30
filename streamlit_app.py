@@ -91,14 +91,14 @@ if st.sidebar.button('Detect License Plate'):
     result = reader.readtext(cropped_image)
     print('Result :',result)
    
-    with col3:
-        try:
-            text = result[0][-2]
-        except Exception as e:
-            text = "No Text Detected"
+    
+    try:
+        text = result[0][-2]
+    except Exception as e:
+        text = "No Text Detected"
       
-        try:
-            st.write("Detected License Plate:", text)
-        except Exception as e:
-            st.write("No License Plate Detected")
+    try:
+        st.write("Detected License Plate:", text)
+    except Exception as e:
+        st.write("No License Plate Detected")
 
