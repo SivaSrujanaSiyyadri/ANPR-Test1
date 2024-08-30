@@ -44,11 +44,12 @@ def config():
     )
 
 # Creating sidebar
-def sidebar():
+def sidebar(source_img):
     with st.sidebar:
         st.header("Image Config")     # Adding header to sidebar
         # Adding file uploader to sidebar for selecting images
         source_img = st.file_uploader("Upload an image...", type=("jpg", "jpeg", "png", 'bmp', 'webp'))
+    return source_img
     
 
 # # Creating main page heading
@@ -131,7 +132,7 @@ def main():
     "What do you want to upload?",
     ("Image", "Video"))
     if add_selectbox=='Image':
-        sidebar()
+        source_img=sidebar()
         yolomodel()
         image()
     if add_selectbox=='Video':
