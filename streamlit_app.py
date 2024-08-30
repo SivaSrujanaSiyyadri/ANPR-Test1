@@ -43,14 +43,6 @@ def config():
     initial_sidebar_state="expanded",    # Expanding sidebar by default   
     )
 
-# Creating sidebar
-def sidebar():
-    with st.sidebar:
-        st.header("Image Config")     # Adding header to sidebar
-        # Adding file uploader to sidebar for selecting images
-        source_img = st.file_uploader("Upload an image...", type=("jpg", "jpeg", "png", 'bmp', 'webp'))
-    return source_img
-    
 
 # # Creating main page heading
 # st.title("Automatic Number Plate License Detection")
@@ -68,7 +60,11 @@ def yolomodel():
 
 
 # Adding image to the first column if image is uploaded
-def image(source_img):
+def image():
+    with st.sidebar:
+        st.header("Image Config")     # Adding header to sidebar
+        # Adding file uploader to sidebar for selecting images
+        source_img = st.file_uploader("Upload an image...", type=("jpg", "jpeg", "png", 'bmp', 'webp'))
     # Creating two columns on the main page
     col1, col2  = st.columns(2)
     with col1:
@@ -132,9 +128,9 @@ def main():
     "What do you want to upload?",
     ("Image", "Video"))
     if add_selectbox=='Image':
-        source_img=sidebar()
+        sidebar()
         yolomodel()
-        image(source_img)
+        image()
     if add_selectbox=='Video':
         yolomodel()
         video()
