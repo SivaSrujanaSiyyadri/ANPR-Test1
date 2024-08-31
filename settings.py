@@ -40,7 +40,7 @@ MODEL_DIR = ROOT / 'weights'
 # DETECTION_MODEL = MODEL_DIR / 'yolov8n.pt'
 # In case of your custome model comment out the line above and
 # Place your custom model pt file name at the line below 
-DETECTION_MODEL = MODEL_DIR / 'best_license_plate_model.pt'
+DETECTION_MODEL = MODEL_DIR / 'best_license_plate_model_8.pt'
 
 SEGMENTATION_MODEL = MODEL_DIR / 'yolov5n-seg.pt'
 
