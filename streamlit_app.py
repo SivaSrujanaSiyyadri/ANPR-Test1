@@ -127,14 +127,14 @@ def image():
         file_bytes = np.asarray(bytearray(images.read()), dtype=np.uint8)
         image=cv2.imdecode(file_bytes,1)
         image = imutils.resize(image,height=620,width=480)
-        uploaded_image = PIL.Image.open(image)
-        res = model.predict(uploaded_image)
-        #st.text(res)
-        boxes = res[0].boxes
-        print('boxes', boxes)
-        res_plotted = res[0].plot()[:, :, ::-1]
-        st.image(res_plotted, caption='Detected Image',
-                use_column_width=True)
+        # uploaded_image = PIL.Image.open(image)
+        # res = model.predict(uploaded_image)
+        # #st.text(res)
+        # boxes = res[0].boxes
+        # print('boxes', boxes)
+        # res_plotted = res[0].plot()[:, :, ::-1]
+        # st.image(res_plotted, caption='Detected Image',
+        #         use_column_width=True)
         # # Read image
         
 
@@ -209,7 +209,7 @@ def image():
         
 def main():
     header()
-    trainmodel()
+    # trainmodel()
     add_selectbox = st.sidebar.selectbox(
     "What do you want to upload?",
     ("Image", "Video"))
