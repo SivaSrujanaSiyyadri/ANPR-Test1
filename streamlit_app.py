@@ -44,7 +44,6 @@ def trainmodel():
     model_path = Path(settings.DETECTION_MODEL)
     try:
         model = helper.load_model(model_path)
-        print('---------Train Model--------',model)
         return model
     except Exception as ex:
         st.error(f"Unable to load model. Check the specified path: {model_path}")
@@ -131,7 +130,7 @@ def image():
         image=cv2.imdecode(file_bytes,1)
         image = imutils.resize(image,height=620,width=480)
         # uploaded_image = PIL.Image.open(image)
-        print('---------Model--------',model)
+        
         res = model.predict(image)
         #st.text(res)
         boxes = res[0].boxes
@@ -146,12 +145,19 @@ def image():
         gray_image = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
         #Canny edge detection to detect edges in an image 
         edged=cv2.Canny(gray_image,30,200)
+
+        print('Boxes xyxy:   ',boxes.xyxy.tolist()[0])
+        x1, y1, x2, y2 = boxes.xyxy.tolist()[0]
+        # Crop the object using the bounding box coordinates
+        cropped_image = gray_image[int(y1):int(y2), int(x1):int(x2)]
+        st.image(cropped_image, caption='Croped Image',
+                use_column_width=True)
         # Function to join similar edges 
         #Take two arguments : 
         #First:: It take all the contours but doesn't create parent-child relationship
         #Second:: It specify to take corner points off the counter
         cnts,new = cv2.findContours(edged.copy(),cv2.RETR_LIST,cv2.CHAIN_APPROX_SIMPLE)   
-        image1=image.copy()
+        image1=cropped_image.copy()
         #This function is used to create counters based to given counter cordinates
         cv2.drawContours(image1,cnts,-1,(0,255,0),3)
         #Here we are sorting the conters and neglecting all the conters whose area is less than 20
