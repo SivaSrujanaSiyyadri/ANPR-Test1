@@ -43,6 +43,7 @@ def trainmodel():
     model_path = Path(settings.DETECTION_MODEL)
     try:
         model = helper.load_model(model_path)
+        print('---------Train Model--------',model)
         return model
     except Exception as ex:
         st.error(f"Unable to load model. Check the specified path: {model_path}")
