@@ -165,7 +165,7 @@ def image():
                 #     #st.balloons
                 # break 
                 reader = easyocr.Reader(['en'])
-                result = reader.readtext(cropped_image)
+                result = reader.readtext(threshold)
                 print('Result :',result)      
         cv2.drawContours(image,[screenCnt],-1,(0,255,0),2) 
         col1, col2= st.columns(2)
