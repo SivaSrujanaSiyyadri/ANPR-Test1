@@ -129,6 +129,7 @@ def image():
         image=cv2.imdecode(file_bytes,1)
         image = imutils.resize(image,height=620,width=480)
         # uploaded_image = PIL.Image.open(image)
+        print('---------Model--------',Model)
         res = model.predict(image)
         #st.text(res)
         boxes = res[0].boxes
