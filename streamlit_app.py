@@ -40,6 +40,7 @@ def footer():
 
 # Load Pre-trained ML Model
 def trainmodel():
+    global model
     model_path = Path(settings.DETECTION_MODEL)
     try:
         model = helper.load_model(model_path)
