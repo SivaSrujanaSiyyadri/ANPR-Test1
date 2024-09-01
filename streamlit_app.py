@@ -6,6 +6,10 @@ import numpy as np
 import tempfile
 import pytesseract
 import easyocr
+from pathlib import Path
+
+import settings
+import helper
 
 
 
@@ -123,6 +127,17 @@ def image():
         file_bytes = np.asarray(bytearray(images.read()), dtype=np.uint8)
         image=cv2.imdecode(file_bytes,1)
         image = imutils.resize(image,height=620,width=480)
+        uploaded_image = PIL.Image.open(image)
+        res = model.predict(uploaded_image)
+        #st.text(res)
+        boxes = res[0].boxes
+        print('boxes', boxes)
+        res_plotted = res[0].plot()[:, :, ::-1]
+        st.image(res_plotted, caption='Detected Image',
+                use_column_width=True)
+        # # Read image
+        
+
         #Convert BGR image to GRAYSCALE
         gray_image = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
         #Canny edge detection to detect edges in an image 
@@ -194,6 +209,7 @@ def image():
         
 def main():
     header()
+    trainmodel()
     add_selectbox = st.sidebar.selectbox(
     "What do you want to upload?",
     ("Image", "Video"))
