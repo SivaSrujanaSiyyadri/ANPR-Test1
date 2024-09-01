@@ -196,7 +196,7 @@ def image():
         col1, col2= st.columns(2)
         with col1:
             st.image(gray_image,caption='Gray-scale image',width=300)
-        with col 1:
+        with col1:
             st.image(cropped_image, caption='Croped Image',
              use_column_width=True)
         with col2:
