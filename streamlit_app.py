@@ -179,7 +179,17 @@ def image():
         with col2:
             st.image(gray_image1,caption='Grayscale Image',width=150)
         with col3:
-            st.image(threshold,caption='Threshold Image',width=150)    
+            st.image(threshold,caption='Threshold Image',width=150)  
+        with col1:
+            try:
+                text = result[0][-2]
+            except Exception as e:
+                text = "No Text Detected"
+      
+            try:
+                st.write("Detected License Plate:", text)
+            except Exception as e:
+                st.write("No License Plate Detected")  
             
         
 def main():
