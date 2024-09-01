@@ -14,7 +14,7 @@ import helper
 
 
 pytesseract.pytesseract.tesseract_cmd ='tesseract'
-
+model=None
 
 
 def header():
