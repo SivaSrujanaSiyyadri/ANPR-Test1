@@ -150,8 +150,8 @@ def image():
         x1, y1, x2, y2 = boxes.xyxy.tolist()[0]
         # Crop the object using the bounding box coordinates
         cropped_image = gray_image[int(y1):int(y2), int(x1):int(x2)]
-        st.image(cropped_image, caption='Croped Image',
-                use_column_width=True)
+        # st.image(cropped_image, caption='Croped Image',
+        #         use_column_width=True)
         # Function to join similar edges 
         #Take two arguments : 
         #First:: It take all the contours but doesn't create parent-child relationship
@@ -170,8 +170,8 @@ def image():
             approx = cv2.approxPolyDP(c, 0.018 * perimeter, True)
             if len(approx) == 4: 
                 screenCnt = approx
-                x,y,w,h = cv2.boundingRect(c)
-                new_img=image[y:y+h,x:x+w]
+                # x,y,w,h = cv2.boundingRect(c)
+                new_img=image[y1:y1+y2,x1:x1+x2]
                 resized = cv2.resize(new_img,dsize=None,fx=4,fy=4)
                 invert = cv2.bitwise_not(resized)
                 gray_image1= cv2.cvtColor(invert,cv2.COLOR_BGR2GRAY)
@@ -196,6 +196,9 @@ def image():
         col1, col2= st.columns(2)
         with col1:
             st.image(gray_image,caption='Gray-scale image',width=300)
+        with col 1:
+            st.image(cropped_image, caption='Croped Image',
+             use_column_width=True)
         with col2:
             st.image(edged,caption='Canny Edge',width=300)
         col1, col2, col3= st.columns(3)
