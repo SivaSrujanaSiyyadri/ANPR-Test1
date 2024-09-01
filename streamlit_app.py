@@ -6,7 +6,7 @@ import numpy as np
 import tempfile
 import pytesseract
 import tempfile
-from zmq import NULL
+
 
 pytesseract.pytesseract.tesseract_cmd ='tesseract'
 
@@ -72,8 +72,7 @@ def video():
                 #Second:: It specify to take corner points off the counter
                 cnts,new = cv2.findContours(edged.copy(),cv2.RETR_LIST,cv2.CHAIN_APPROX_SIMPLE)   
                 #This function is used to create counters based to given counter cordinates
-                if (cnts==NULL):
-                    continue
+                
                 cv2.drawContours(image1,cnts,-1,(0,255,0),3)
                 #Here we are sorting the conters and neglecting all the conters whose area is less than 20
                 cnts = sorted(cnts, key = cv2.contourArea, reverse = True)[:20]
