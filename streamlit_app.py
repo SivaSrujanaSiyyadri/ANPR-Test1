@@ -170,9 +170,9 @@ def image():
             approx = cv2.approxPolyDP(c, 0.018 * perimeter, True)
             if len(approx) == 4: 
                 screenCnt = approx
-                x,y,w,h = cv2.boundingRect(c)
-                # new_img=image[y1:y1+y2,x1:x1+x2]
-                new_img=image[y:y+h,x:x+w]
+                # x,y,w,h = cv2.boundingRect(c)
+                new_img=image[int(y1):int(y1+y2),int(x1):int(x1+x2)]
+                # new_img=image[y:y+h,x:x+w]
                 st.image(new_img, caption='New Image',
                 use_column_width=True)
                 resized = cv2.resize(new_img,dsize=None,fx=4,fy=4)
