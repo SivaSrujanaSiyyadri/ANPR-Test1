@@ -171,8 +171,7 @@ def image():
             if len(approx) == 4: 
                 screenCnt = approx
                 # x,y,w,h = cv2.boundingRect(c)
-                new_img=image[y1:y1+y2,x1:x1+x2]
-                resized = cv2.resize(new_img,dsize=None,fx=4,fy=4)
+                resized = cv2.resize(cropped_image,dsize=None,fx=4,fy=4)
                 invert = cv2.bitwise_not(resized)
                 gray_image1= cv2.cvtColor(invert,cv2.COLOR_BGR2GRAY)
                 gray_image1=cv2.equalizeHist(gray_image1)
