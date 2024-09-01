@@ -7,6 +7,7 @@ import tempfile
 import pytesseract
 import easyocr
 from pathlib import Path
+import re
 
 import settings
 import helper
@@ -48,6 +49,27 @@ def trainmodel():
     except Exception as ex:
         st.error(f"Unable to load model. Check the specified path: {model_path}")
         st.error(ex)
+
+def isValidVehicleNumberPlate(str):
+ 
+    # Regex to check valid Indian Vehicle Number Plate
+    regex = "^[A-Z]{2}[\\s-]{0,1}[0-9]{2}[\\s-]{0,1}[A-Z]{1,2}[\\s-]{0,1}[0-9]{4}$"
+     
+    # Compile the ReGex
+    p = re.compile(regex)
+    print(p)
+ 
+    # If the string is empty
+    # return false
+    if (str == None):
+        return False
+ 
+    # Return if the string
+    # matched the ReGex
+    if(re.search(p, str)):
+        return True
+    else:
+        return False
 
 def video():
     #st.subheader('Choose a photo')
@@ -214,11 +236,12 @@ def image():
         with col1:
             try:
                 text = result[0][-2]
+                License_number=isValidVehicleNumberPlate(text)
             except Exception as e:
                 text = "No Text Detected"
       
             try:
-                st.write("Detected License Plate:", text)
+                st.write("Detected License Plate:", License_number)
             except Exception as e:
                 st.write("No License Plate Detected")  
             
