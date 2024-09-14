@@ -236,7 +236,7 @@ def image():
             st.image(threshold,caption='Threshold Image',width=150)  
         with col1:
             try:
-                pringt('Result value: ',result)
+                print('Result value: ',result)
                 text = result[0][-2]
                 # License_number=isValidVehicleNumberPlate(text)
             except Exception as e:
