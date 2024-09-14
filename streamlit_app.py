@@ -16,7 +16,7 @@ import helper
 
 pytesseract.pytesseract.tesseract_cmd ='tesseract'
 model=None
-
+global invert
 
 def header():
     st.markdown("<h1 style='text-align: center; color: white;'>Automatic Number plate detection</h1>", unsafe_allow_html=True)
