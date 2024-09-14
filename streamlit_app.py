@@ -190,6 +190,7 @@ def image():
             #To determine sqaure cure among the identified contours
             perimeter = cv2.arcLength(c,True)
             approx = cv2.approxPolyDP(c, 0.018 * perimeter, True)
+            print('Length of Approx: ',len(approx))
             if len(approx) == 4: 
                 screenCnt = approx
                 # x,y,w,h = cv2.boundingRect(c)
