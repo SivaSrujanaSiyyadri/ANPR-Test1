@@ -84,4 +84,4 @@ yt-dlp==2024.7.16
 easyocr==1.7.1
 imutils==0.5.3
 pytesseract==0.3.13
-re==2024.7.24
+
