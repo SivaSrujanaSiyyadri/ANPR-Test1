@@ -234,14 +234,14 @@ def image():
         with col3:
             st.image(threshold,caption='Threshold Image',width=150)  
         with col1:
-            # try:
-            #     text = result[0][-2]
-            #     License_number=isValidVehicleNumberPlate(text)
-            # except Exception as e:
-            #     text = "No Text Detected"
+            try:
+                text = result[0][-2]
+                # License_number=isValidVehicleNumberPlate(text)
+            except Exception as e:
+                text = "No Text Detected"
       
             try:
-                st.write("Detected License Plate:", License_number)
+                st.write("Detected License Plate:", text)
             except Exception as e:
                 st.write("No License Plate Detected")  
             
