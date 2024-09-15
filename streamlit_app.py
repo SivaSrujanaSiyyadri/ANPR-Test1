@@ -6,7 +6,7 @@ import numpy as np
 import tempfile
 import pytesseract
 import easyocr
-import tesseract-ocr
+# import tesseract-ocr
 from pathlib import Path
 # import re
 
