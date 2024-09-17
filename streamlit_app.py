@@ -88,7 +88,7 @@ def video():
         while(cap.isOpened()):
             ret,frame = cap.read()
             i=i+1
-            if ret==True and i%285==0:
+            if ret==True and i%285==0:``
                 st.spinner("Please wait")
                 image = imutils.resize(frame,height=620,width=480)
             #Convert BGR image to GRAYSCALE
@@ -125,7 +125,11 @@ def video():
                         #PyTesseract to convert text in the image to string
                         # plate = pytesseract.image_to_string(threshold, config='-c tessedit_char_whitelist=0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ --psm 8')
                         reader = easyocr.Reader(['en'],model_storage_directory='.')
-                        plate = reader.readtext(threshold,paragraph="False")[0][1]
+                        try:
+                            plate = reader.readtext(threshold,paragraph="False")[0][1]
+                        except Exception as e:
+                            plate = "No image Detected"
+                        
                         if(plate==''):
                             plate="Error"
                         if(len(plate)>10): #Car number plate can not have more than 10 characters 
