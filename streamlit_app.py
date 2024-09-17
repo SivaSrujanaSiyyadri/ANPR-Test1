@@ -88,7 +88,7 @@ def video():
         while(cap.isOpened()):
             ret,frame = cap.read()
             i=i+1
-            if ret==True and i%285==0:``
+            if ret==True and i%285==0:
                 st.spinner("Please wait")
                 image = imutils.resize(frame,height=620,width=480)
             #Convert BGR image to GRAYSCALE
