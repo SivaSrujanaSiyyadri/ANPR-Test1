@@ -123,12 +123,14 @@ def video():
                         threshold=cv2.threshold(gray_image1,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)[1]
                         #rem_noise=cv2.medianBlur(threshold,5)
                         #PyTesseract to convert text in the image to string
-                        # plate = pytesseract.image_to_string(threshold, config='-c tessedit_char_whitelist=0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ --psm 8')
-                        reader = easyocr.Reader(['en'],model_storage_directory='.')
-                        try:
-                            plate = reader.readtext(threshold,paragraph="False")[0][1]
-                        except Exception as e:
-                            plate = "No image Detected"
+                        plate = pytesseract.image_to_string(threshold, config='-c tessedit_char_whitelist=0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ --psm 8')
+
+
+                        # reader = easyocr.Reader(['en'],model_storage_directory='.')
+                        # try:
+                        #     plate = reader.readtext(threshold,paragraph="False")[0][1]
+                        # except Exception as e:
+                        #     plate = "No image Detected"
                         
                         if(plate==''):
                             plate="Error"
