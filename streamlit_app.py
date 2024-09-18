@@ -168,17 +168,17 @@ def image():
         st.image(res_plotted, caption='Detected Image',
                 use_column_width=True)
         # Read image
+        
+
+        #Convert BGR image to GRAYSCALE
+        gray_image = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
+        #Canny edge detection to detect edges in an image 
+        edged=cv2.Canny(gray_image,30,200)
+
         print('Boxes xyxy:   ',boxes.xyxy.tolist()[0])
         x1, y1, x2, y2 = boxes.xyxy.tolist()[0]
         # Crop the object using the bounding box coordinates
         cropped_image = gray_image[int(y1):int(y2), int(x1):int(x2)]
-
-        #Convert BGR image to GRAYSCALE
-        gray_image = cv2.cvtColor(cropped_image,cv2.COLOR_BGR2GRAY)
-        #Canny edge detection to detect edges in an image 
-        edged=cv2.Canny(gray_image,30,200)
-
-        
         # st.image(cropped_image, caption='Croped Image',
         #         use_column_width=True)
         # Function to join similar edges 
@@ -192,7 +192,7 @@ def image():
         #Here we are sorting the conters and neglecting all the conters whose area is less than 20
         cnts = sorted(cnts, key = cv2.contourArea, reverse = True)[:20]
         screenCnt = None
-        image2 = image1.copy()
+        image2 = image.copy()
         for c in cnts:
             #To determine sqaure cure among the identified contours
             perimeter = cv2.arcLength(c,True)
@@ -201,9 +201,9 @@ def image():
             if len(approx) == 4: 
                 screenCnt = approx
                 # x,y,w,h = cv2.boundingRect(c)
-                new_img=image1[int(y1):int(y1+y2),int(x1):int(x1+x2)]
+                new_img=cropped_image[int(y1):int(y1+y2),int(x1):int(x1+x2)]
                 # new_img=image[y:y+h,x:x+w]
-                st.image(image1, caption='New Image',
+                st.image(new_img, caption='New Image',
                 use_column_width=True)
                 resized = cv2.resize(new_img,dsize=None,fx=4,fy=4)
                 invert = cv2.bitwise_not(resized)
