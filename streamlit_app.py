@@ -203,8 +203,8 @@ def image():
                 # x,y,w,h = cv2.boundingRect(c)
                 new_img=image[int(y1):int(y2), int(x1):int(x2)]
                 # new_img=image[y:y+h,x:x+w]
-                st.image(new_img, caption='New Image',
-                use_column_width=True)
+                # st.image(new_img, caption='New Image',
+                # use_column_width=True)
                 resized = cv2.resize(new_img,dsize=None,fx=4,fy=4)
                 invert = cv2.bitwise_not(resized)
                 gray_image1= cv2.cvtColor(invert,cv2.COLOR_BGR2GRAY)
