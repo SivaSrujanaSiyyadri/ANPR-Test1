@@ -201,7 +201,7 @@ def image():
             if len(approx) == 4: 
                 screenCnt = approx
                 # x,y,w,h = cv2.boundingRect(c)
-                new_img=image[int(y1):int(y1+y2),int(x1):int(x1+x2)]
+                new_img=image[int(y1):int(y2), int(x1):int(x2)]
                 # new_img=image[y:y+h,x:x+w]
                 st.image(new_img, caption='New Image',
                 use_column_width=True)
