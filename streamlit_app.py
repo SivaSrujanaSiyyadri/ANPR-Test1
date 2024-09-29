@@ -244,7 +244,8 @@ def image():
         with col1:
             try:
                 print('Result value: ',result)
-                text = result[0][-2]
+                # text = result[0][-2]
+                text = result[0][1]
                 # License_number=isValidVehicleNumberPlate(text)
             except Exception as e:
                 text = "No Text Detected"
