@@ -216,20 +216,20 @@ def image():
                 gray_image1=cv2.equalizeHist(gray_image1)
                 threshold=cv2.threshold(gray_image1,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)[1]
                 #rem_noise=cv2.medianBlur(threshold,5)
-                # PyTesseract to convert text in the image to string
-                plate = pytesseract.image_to_string(threshold, config='-c tessedit_char_whitelist=0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ --psm 8')
-                if(plate==''):
-                    plate="Error"
-                if(len(plate)>10): #Car number plate can not have more than 10 characters 
-                    st.subheader("Number plate detected is : "+plate[:13])  
-                    #st.balloons()
+                #PyTesseract to convert text in the image to string
+                # plate = pytesseract.image_to_string(threshold, config='-c tessedit_char_whitelist=0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ --psm 8')
+                # if(plate==''):
+                #     plate="Error"
+                # if(len(plate)>10): #Car number plate can not have more than 10 characters 
+                #     st.subheader("Number plate detected is : "+plate[:13])  
+                #     #st.balloons()
                 # else:
                 #     st.subheader("Number plate detected is : "+plate)  
                 #     #st.balloons
                 # break 
-                # reader = easyocr.Reader(['en'])
-                # result = reader.readtext(cropped_image)
-                # print('Result :',result)      
+                reader = easyocr.Reader(['en'])
+                result = reader.readtext(cropped_image)
+                print('Result :',result)      
         cv2.drawContours(image,[screenCnt],-1,(0,255,0),2) 
         col1, col2= st.columns(2)
         with col1:
@@ -248,7 +248,7 @@ def image():
             st.image(threshold,caption='Threshold Image',width=150)  
         with col1:
             try:
-                print('Result value: ',plate)
+                print('Result value: ',result)
                 text = result[0][-2]
                 # text = result[0][1]
                 # License_number=isValidVehicleNumberPlate(text)
