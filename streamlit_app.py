@@ -228,7 +228,7 @@ def image():
                 #     #st.balloons
                 # break 
                 reader = easyocr.Reader(['en'])
-                result = reader.readtext(gray_image_test)
+                result = reader.readtext(cropped_image)
                 print('Result :',result)      
         cv2.drawContours(image,[screenCnt],-1,(0,255,0),2) 
         col1, col2= st.columns(2)
@@ -249,8 +249,8 @@ def image():
         with col1:
             try:
                 print('Result value: ',result)
-                # text = result[0][-2]
-                text = result[0][1]
+                text = result[0][-2]
+                # text = result[0][1]
                 # License_number=isValidVehicleNumberPlate(text)
             except Exception as e:
                 text = "No Text Detected"
