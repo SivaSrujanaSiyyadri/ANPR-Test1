@@ -235,8 +235,8 @@ def image():
         with col2:
             st.image(edged,caption='Canny Edge',width=300)
         col1, col2, col3= st.columns(3)
-        with col1:
-            st.image(invert,caption='Inverted B & W',width=150)
+        # with col1:
+        #     st.image(invert,caption='Inverted B & W',width=150)
         with col2:
             st.image(gray_image1,caption='Grayscale Image',width=150)
         with col3:
