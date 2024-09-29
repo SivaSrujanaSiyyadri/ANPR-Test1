@@ -207,7 +207,7 @@ def image():
                 # use_column_width=True)
                 resized = cv2.resize(new_img,dsize=None,fx=4,fy=4)
                 invert = cv2.bitwise_not(resized)
-                gray_image1= cv2.cvtColor(new_img,cv2.COLOR_BGR2GRAY)
+                gray_image1= cv2.cvtColor(invert,cv2.COLOR_BGR2GRAY)
                 gray_image1=cv2.equalizeHist(gray_image1)
                 threshold=cv2.threshold(gray_image1,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)[1]
                 #rem_noise=cv2.medianBlur(threshold,5)
@@ -235,8 +235,8 @@ def image():
         with col2:
             st.image(edged,caption='Canny Edge',width=300)
         col1, col2, col3= st.columns(3)
-        # with col1:
-        #     st.image(invert,caption='Inverted B & W',width=150)
+        with col1:
+            st.image(invert,caption='Inverted B & W',width=150)
         with col2:
             st.image(gray_image1,caption='Grayscale Image',width=150)
         with col3:
