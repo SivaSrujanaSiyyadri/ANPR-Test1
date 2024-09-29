@@ -193,6 +193,11 @@ def image():
         cnts = sorted(cnts, key = cv2.contourArea, reverse = True)[:20]
         screenCnt = None
         image2 = image.copy()
+        #---------------
+        
+        image_test = cv2.cvtColor(cropped_image, cv2.COLOR_BGR2RGB)
+        gray_image_test = cv2.cvtColor(image_test, cv2.COLOR_BGR2GRAY)
+        #------------------
         for c in cnts:
             #To determine sqaure cure among the identified contours
             perimeter = cv2.arcLength(c,True)
@@ -223,7 +228,7 @@ def image():
                 #     #st.balloons
                 # break 
                 reader = easyocr.Reader(['en'])
-                result = reader.readtext(cropped_image)
+                result = reader.readtext(gray_image_test)
                 print('Result :',result)      
         cv2.drawContours(image,[screenCnt],-1,(0,255,0),2) 
         col1, col2= st.columns(2)
